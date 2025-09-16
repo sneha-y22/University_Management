@@ -1,0 +1,5 @@
+com\university\faculty\FacultyServiceApplication.class
+com\university\faculty\service\FacultyService.class
+com\university\faculty\model\Faculty.class
+com\university\faculty\repository\FacultyRepository.class
+com\university\faculty\controller\FacultyController.class

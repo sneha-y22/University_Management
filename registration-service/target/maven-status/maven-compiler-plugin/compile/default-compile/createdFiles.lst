@@ -1,0 +1,15 @@
+com\university\registration\RegistrationServiceApplication.class
+com\university\registration\dto\CourseDto.class
+com\university\registration\model\Registration.class
+com\university\registration\service\StudentClientService.class
+com\university\registration\repository\RegistrationRepository.class
+com\university\registration\service\RegistrationService.class
+com\university\registration\service\FacultyClientService.class
+com\university\registration\service\StudentClientService$1.class
+com\university\registration\controller\RegistrationController.class
+com\university\registration\service\CourseClientService.class
+com\university\registration\service\CourseClientService$1.class
+com\university\registration\dto\RegistrationWithStudent.class
+com\university\registration\dto\FacultyDto.class
+com\university\registration\service\FacultyClientService$1.class
+com\university\registration\model\Registration$RegistrationBuilder.class

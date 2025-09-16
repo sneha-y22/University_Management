@@ -1,0 +1,11 @@
+D:\University_Management\management\registration-service\src\main\java\com\university\registration\repository\RegistrationRepository.java
+D:\University_Management\management\registration-service\src\main\java\com\university\registration\dto\RegistrationWithStudent.java
+D:\University_Management\management\registration-service\src\main\java\com\university\registration\dto\FacultyDto.java
+D:\University_Management\management\registration-service\src\main\java\com\university\registration\RegistrationServiceApplication.java
+D:\University_Management\management\registration-service\src\main\java\com\university\registration\service\CourseClientService.java
+D:\University_Management\management\registration-service\src\main\java\com\university\registration\service\StudentClientService.java
+D:\University_Management\management\registration-service\src\main\java\com\university\registration\model\Registration.java
+D:\University_Management\management\registration-service\src\main\java\com\university\registration\service\FacultyClientService.java
+D:\University_Management\management\registration-service\src\main\java\com\university\registration\service\RegistrationService.java
+D:\University_Management\management\registration-service\src\main\java\com\university\registration\dto\CourseDto.java
+D:\University_Management\management\registration-service\src\main\java\com\university\registration\controller\RegistrationController.java

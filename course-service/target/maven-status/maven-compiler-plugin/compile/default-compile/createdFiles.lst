@@ -1,0 +1,6 @@
+com\university\course\AppConfig.class
+com\university\course\CourseServiceApplication.class
+com\university\course\controller\CourseController.class
+com\university\course\repository\CourseRepository.class
+com\university\course\model\Course.class
+com\university\course\service\CourseService.class
