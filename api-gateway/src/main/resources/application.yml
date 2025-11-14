@@ -1,0 +1,39 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: apigateway
+
+  config:
+    import: "optional:configserver:" # <-- put inside quotes!
+
+  cloud:
+    config:
+      uri: http://localhost:8888 # remove or comment this line if config server not running
+
+    gateway:
+      routes:
+        - id: student-service
+          uri: lb://student-service
+          predicates:
+            - Path=/students/**
+        - id: registration-service
+          uri: lb://registration-service
+          predicates:
+            - Path=/registrations/**
+        - id: faculty-service
+          uri: lb://faculty-service
+          predicates:
+            - Path=/faculty/**
+        - id: course-service
+          uri: lb://course-service
+          predicates:
+            - Path=/courses/**
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
