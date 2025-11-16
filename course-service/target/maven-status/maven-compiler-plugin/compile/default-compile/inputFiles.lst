@@ -1,5 +1,6 @@
 D:\University_Management\University_Management\course-service\src\main\java\com\university\course\repository\CourseRepository.java
 D:\University_Management\University_Management\course-service\src\main\java\com\university\course\service\CourseService.java
+D:\University_Management\University_Management\course-service\src\main\java\com\university\course\dto\PageResponse.java
 D:\University_Management\University_Management\course-service\src\main\java\com\university\course\AppConfig.java
 D:\University_Management\University_Management\course-service\src\main\java\com\university\course\model\Course.java
 D:\University_Management\University_Management\course-service\src\main\java\com\university\course\controller\CourseController.java
