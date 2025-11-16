@@ -11,20 +11,18 @@ import org.springframework.security.web.SecurityFilterChain;
 
 public class ApplicationConfig {
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception
-    {
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
-        http
-            .csrf(csrf -> csrf.disable())
-            .authorizeHttpRequests(auth -> auth
-            .requestMatchers("/eureka/**").authenticated()
-            .anyRequest().permitAll()
-            )
-            .httpBasic(httpBasic -> {})
-            .cors(cors -> {});
+    http
+        .csrf(csrf -> csrf.disable())
+        .authorizeHttpRequests(auth -> auth
+            .requestMatchers("/eureka/**").permitAll()  // <-- Allow eureka communications
+            .anyRequest().authenticated()               // everything else secured
+        )
+        .httpBasic(httpBasic -> {});
 
-            return http.build();
-    }
+    return http.build();
+}
 }
 
 
