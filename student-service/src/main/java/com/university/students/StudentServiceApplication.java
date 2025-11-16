@@ -2,6 +2,9 @@ package com.university.students;
 
 import com.university.students.model.Student;
 import com.university.students.service.StudentService;
+
+import jakarta.annotation.PostConstruct;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -85,5 +88,10 @@ public class StudentServiceApplication {
 
             scanner.close();
         };
+    }
+    @PostConstruct
+    public void checkSecurityUser() {
+        String username = null;
+        System.out.println("Security username loaded: '" + username + "'");
     }
 }

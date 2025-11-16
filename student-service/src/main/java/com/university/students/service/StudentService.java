@@ -1,5 +1,6 @@
 package com.university.students.service;
 
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 import com.university.students.model.Student;
 import com.university.students.repository.StudentRepository;
@@ -21,18 +22,38 @@ public class StudentService {
         return repository.save(student);
     }
 
-    // ✅ Get all students
+    // ❗ Get all students (without pagination)
     public List<Student> getAllStudents() {
         return repository.findAll();
     }
 
-    // ✅ Get student by ID (returns null if not found)
+    // ❗ Get with pagination + sorting (NEW)
+    public Page<Student> getStudentsPaged(int page, int size, String sortBy, String sortDir) {
+
+        Sort sort = sortDir.equalsIgnoreCase("desc")
+                ? Sort.by(sortBy).descending()
+                : Sort.by(sortBy).ascending();
+
+        Pageable pageable = PageRequest.of(page, size, sort);
+
+        return repository.findAll(pageable);
+    }
+
+    // ❗ Global Search by name/course/email with pagination (NEW)
+    public Page<Student> searchStudents(String keyword, int page, int size) {
+
+        Pageable pageable = PageRequest.of(page, size);
+
+        return repository.searchGlobal(keyword, pageable);
+    }
+
+    // Get student by ID
     public Student getStudentById(Long id) {
         Optional<Student> studentOpt = repository.findById(id);
         return studentOpt.orElse(null);
     }
 
-    // ✅ Update student safely
+    // Update student safely
     public Student updateStudent(Long id, Student student) {
         return repository.findById(id).map(existing -> {
             existing.setName(student.getName());
@@ -42,7 +63,7 @@ public class StudentService {
         }).orElse(null);
     }
 
-    // ✅ Delete student safely
+    // Delete student
     public boolean deleteStudent(Long id) {
         if (repository.existsById(id)) {
             repository.deleteById(id);
@@ -51,12 +72,12 @@ public class StudentService {
         return false;
     }
 
-    // ✅ Search students by name (case insensitive)
+    // search by name only (OLD)
     public List<Student> searchByName(String name) {
         return repository.findByNameContainingIgnoreCase(name);
     }
 
-    // ✅ Get students by course
+    // Get by course
     public List<Student> getStudentsByCourse(String course) {
         return repository.findByCourse(course);
     }

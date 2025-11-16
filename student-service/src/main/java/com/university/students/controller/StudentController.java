@@ -2,9 +2,12 @@ package com.university.students.controller;
 
 import com.university.students.service.StudentService;
 import com.university.students.model.Student;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
+import org.springframework.data.domain.Page;
 
 import java.util.*;
 
@@ -18,20 +21,41 @@ public class StudentController {
         this.service = service;
     }
 
-    // ✅ Create a new student
+    // Create new student
     @PostMapping
     public ResponseEntity<Student> createStudent(@RequestBody Student student) {
         Student saved = service.createStudent(student);
         return new ResponseEntity<>(saved, HttpStatus.CREATED);
     }
 
-    // ✅ Get all students
+    // Get all students (WITHOUT pagination)
     @GetMapping
     public ResponseEntity<List<Student>> getAllStudents() {
         return ResponseEntity.ok(service.getAllStudents());
     }
 
-    // ✅ Get student by ID (returns proper error if not found)
+    // NEW: Get with pagination + sorting
+    @GetMapping("/paged")
+    public ResponseEntity<Page<Student>> getStudentsPaged(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size,
+            @RequestParam(defaultValue = "id") String sortBy,
+            @RequestParam(defaultValue = "asc") String sortDir
+    ) {
+        return ResponseEntity.ok(service.getStudentsPaged(page, size, sortBy, sortDir));
+    }
+
+    // NEW: Global search with pagination
+    @GetMapping("/filter")
+    public ResponseEntity<Page<Student>> filterStudents(
+            @RequestParam String keyword,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size
+    ) {
+        return ResponseEntity.ok(service.searchStudents(keyword, page, size));
+    }
+
+    // Get student by ID
     @GetMapping("/{id}")
     public ResponseEntity<?> getStudentById(@PathVariable Long id) {
         try {
@@ -47,7 +71,7 @@ public class StudentController {
         }
     }
 
-    // ✅ Update student by ID
+    // Update
     @PutMapping("/{id}")
     public ResponseEntity<?> updateStudent(@PathVariable Long id, @RequestBody Student student) {
         try {
@@ -63,7 +87,7 @@ public class StudentController {
         }
     }
 
-    // ✅ Delete student by ID
+    // Delete
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteStudent(@PathVariable Long id) {
         boolean deleted = service.deleteStudent(id);
@@ -74,13 +98,13 @@ public class StudentController {
         }
     }
 
-    // ✅ Search students by name
+    // Search by name only
     @GetMapping("/search")
     public ResponseEntity<List<Student>> searchByName(@RequestParam String name) {
         return ResponseEntity.ok(service.searchByName(name));
     }
 
-    // ✅ Get students by course
+    // Get by course
     @GetMapping("/course/{course}")
     public ResponseEntity<List<Student>> getStudentsByCourse(@PathVariable String course) {
         return ResponseEntity.ok(service.getStudentsByCourse(course));

@@ -1,0 +1,8 @@
+com\university\students\controller\StudentController.class
+com\university\students\model\Student.class
+com\university\students\model\Student$StudentBuilder.class
+com\university\students\service\RegistrationClientService.class
+com\university\students\config\AppConfig.class
+com\university\students\repository\StudentRepository.class
+com\university\students\service\StudentService.class
+com\university\students\StudentServiceApplication.class
